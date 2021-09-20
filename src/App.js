@@ -3,9 +3,11 @@ import Menu from './Menu';
 import Categories from './Categories';
 import items from './data';
 
+const allCategories = ['all', ...new Set(items.map((item) => item.category))];
+console.log(allCategories);
 function App() {
   const [menuItems,setMenuItems] = useState(items);
-  const [categories,setCategories] = useState([]);
+  const [categories,setCategories] = useState(allCategories);
   
   //for sake of manual updating the data
   const filterItems = (catergory) => {
@@ -17,12 +19,12 @@ function App() {
     setMenuItems(newItems);
   }
   return <main>
-    <section class="menu section">
-      <div class="title">
+    <section className="menu section">
+      <div className="title">
       <h2>Our Menu</h2>
-      <div class="underline"></div>
+      <div className="underline"></div>
       </div>
-      <Categories filterItems = {filterItems}/>
+      <Categories filterItems = {filterItems} categories = {categories}/>
       <Menu items={menuItems}/>
 
     </section>
